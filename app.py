@@ -5,10 +5,10 @@ from shelljob import proc
 app = flask.Flask(__name__)
 
 
-@app.route('/api')
-def stream():
+@app.route('/api/<first_name>/<last_name>')
+def stream(first_name, last_name):
     g = proc.Group()    
-    p = g.run( ['./src1.sh', 'leslie', 'rosenzweig'] )
+    p = g.run( ['./src1.sh', first_name, last_name] )
     def read_process():
         while g.is_pending():
             lines = g.readlines()
