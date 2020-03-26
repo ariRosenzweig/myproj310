@@ -52,7 +52,6 @@ loc=$(echo "$el"| jq ".personStore.location"| sed 's/<[^>]*>/ /g')
 }
 
 
-
 func3 () {  
 getSearch $1 $2 $3 
 getApi
@@ -63,6 +62,7 @@ then
    do
     extractText
     echo "{\"text\": $tex, \"name\": $nms, \"location\": $loc}"
+    ./treegen.py "$tex"
    done
 else
   getLinks
@@ -70,6 +70,7 @@ else
   do
    extractText
    echo "{\"text\": $tex, \"name\": $nms, \"location\": $loc}"
+   ./treegen.py "$tex"
   done
 fi      
 }
